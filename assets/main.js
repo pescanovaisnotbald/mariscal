@@ -11,6 +11,21 @@
     lastY = y;
   }, { passive: true });
 
+  /* mobile menu */
+  const burger = document.querySelector('.burger'), menu = document.getElementById('menu');
+  if (burger && menu) {
+    const set = (open) => {
+      document.documentElement.classList.toggle('menu-open', open);
+      burger.setAttribute('aria-expanded', open);
+      burger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+      menu.setAttribute('aria-hidden', !open);
+    };
+    burger.addEventListener('click', () => set(!document.documentElement.classList.contains('menu-open')));
+    menu.addEventListener('click', (e) => { if (e.target.closest('a')) set(false); });
+    addEventListener('keydown', (e) => { if (e.key === 'Escape') set(false); });
+    matchMedia('(min-width:721px)').addEventListener('change', (m) => { if (m.matches) set(false); });
+  }
+
   /* reveal on scroll */
   const io = new IntersectionObserver((es) => es.forEach((e) => {
     if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
