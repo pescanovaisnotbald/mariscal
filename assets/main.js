@@ -31,6 +31,55 @@
     tick();
   }
 
+  /* image parallax inside masks (CSS `translate`, independent of the reveal zoom) */
+  const pimgs = [...document.querySelectorAll('.img-mask img')];
+  if (pimgs.length && !reduce) {
+    let pd = true;
+    addEventListener('scroll', () => { pd = true; }, { passive: true });
+    addEventListener('resize', () => { pd = true; });
+    const ptick = () => {
+      if (pd) {
+        pd = false;
+        const vh = innerHeight;
+        pimgs.forEach((img) => {
+          const r = img.parentElement.getBoundingClientRect();
+          if (r.bottom < -100 || r.top > vh + 100) return;
+          const mid = ((r.top + r.height / 2) - vh / 2) / vh;       // -1..1 roughly
+          img.style.setProperty('--ty', (-mid * r.height * .07).toFixed(1) + 'px');
+        });
+      }
+      requestAnimationFrame(ptick);
+    };
+    ptick();
+  }
+
+  /* words light up as you scroll */
+  document.querySelectorAll('.scrub').forEach((p) => {
+    const words = p.textContent.trim().split(/\s+/);
+    p.textContent = '';
+    const spans = words.map((w) => { const s = document.createElement('span'); s.className = 'w'; s.textContent = w; p.append(s, ' '); return s; });
+    if (reduce) { spans.forEach((s) => s.classList.add('on')); return; }
+    const upd = () => {
+      const r = p.getBoundingClientRect(), vh = innerHeight;
+      const k = Math.min(Math.max((vh * .88 - r.top) / (vh * .5 + r.height * .6), 0), 1);
+      const n = Math.round(k * spans.length);
+      spans.forEach((s, i) => s.classList.toggle('on', i < n));
+    };
+    addEventListener('scroll', upd, { passive: true }); addEventListener('resize', upd); upd();
+  });
+
+  /* blog carousel progress bar (mobile) */
+  const posts = document.querySelector('.posts'), prog = document.querySelector('.prog');
+  if (posts && prog) {
+    const upd = () => {
+      const max = posts.scrollWidth - posts.clientWidth;
+      const w = Math.min(posts.clientWidth / posts.scrollWidth, 1);
+      prog.style.setProperty('--w', w.toFixed(3));
+      prog.style.setProperty('--x', max > 0 ? (posts.scrollLeft / max).toFixed(3) : 0);
+    };
+    posts.addEventListener('scroll', upd, { passive: true }); addEventListener('resize', upd); upd();
+  }
+
   /* count-up for the figures */
   document.querySelectorAll('[data-count]').forEach((el) => {
     if (reduce) return;
