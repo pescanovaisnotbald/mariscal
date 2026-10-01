@@ -91,19 +91,19 @@
     <div class="posts">
       <article class="post rv">
         <div class="img-mask"><img src="assets/img/merengue.jpg" alt="Merengue relleno de nata montada y espolvoreado con azúcar glas, sobre pizarra" loading="lazy"></div>
-        <div class="meta"><span>Clásicos</span></div>
+        <div class="meta"><span>Clásicos</span><span>3 min</span></div>
         <h3>El merengue que se deshace en la boca</h3>
         <p>Claras, azúcar y horas de horno bajo. Dos discos crujientes y una nata ligera en medio.</p>
       </article>
       <article class="post rv" style="--d:.12s">
         <div class="img-mask"><img src="assets/img/fresa.jpg" alt="Primer plano de una tartaleta de fresas frescas sobre base de masa sablée" loading="lazy"></div>
-        <div class="meta"><span>Temporada</span></div>
+        <div class="meta"><span>Temporada</span><span>2 min</span></div>
         <h3>Tartaleta de fresa, a mano</h3>
         <p>Masa sablée, crema suave y fruta fresca cortada a mano, una a una.</p>
       </article>
       <article class="post rv" style="--d:.24s">
         <div class="img-mask"><img src="assets/img/merengue-chocolate.jpg" alt="Merengue con nata cubierto de chocolate caliente que resbala por los lados" loading="lazy"></div>
-        <div class="meta"><span>Golosos</span></div>
+        <div class="meta"><span>Golosos</span><span>2 min</span></div>
         <h3>Chocolate sobre merengue</h3>
         <p>Una cobertura de chocolate brillante que cae despacio sobre la nata. Mejor en el momento.</p>
       </article>
