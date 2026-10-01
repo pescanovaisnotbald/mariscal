@@ -2,10 +2,11 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Mariscal · Pastisseria artesana en Terrassa</title>
 <meta name="description" content="Pastisseria Mariscal: pastelería y panadería artesana en Terrassa. Postres individuales, tartaletas, merengues y obrador propio. Dos tiendas, Pare Llaurador y Abat Marcet.">
 <meta name="theme-color" content="#ffffff">
+<link rel="preload" href="assets/img/hero.jpg" as="image">
 <link rel="preload" href="assets/fonts/Jost-normal-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="assets/style.css">
@@ -36,9 +37,15 @@
     <span class="dot" aria-hidden="true"></span>
   </h1>
   <p class="hero-sub"><i></i><span>Pastisseria artesana · Terrassa</span><i></i></p>
-  <div class="hero-grain"></div>
   <div class="scroll-cue" aria-hidden="true"></div>
 </section>
+
+<!-- HERO MEDIA -->
+<div class="hero-media" aria-hidden="false">
+  <div class="frame">
+    <img src="assets/img/hero.jpg" width="942" height="1669" alt="Interior de la pastelería Mariscal: mostrador de madera con panes, baguettes y bollería artesana" fetchpriority="high" decoding="async">
+  </div>
+</div>
 
 <!-- ABOUT -->
 <section id="conocenos">
@@ -51,9 +58,9 @@
       <p class="rv" style="--d:.28s">Desde nuestro obrador salen cada día el pan, la bollería, las tartaletas y los postres individuales que luego encontrarás en el mostrador. Sin prisas ni atajos: mantequilla de verdad, fruta fresca, chocolate de calidad y recetas que se afinan con los años.</p>
       <p class="rv" style="--d:.34s">Pasa a desayunar, a merendar o a llevarte algo dulce a casa. Tenemos mesas, buen café y el mismo cuidado en cada detalle.</p>
       <div class="facts rv" style="--d:.4s">
-        <div><b>4,7</b><span>Valoración en Google</span></div>
-        <div><b>2</b><span>Tiendas en Terrassa</span></div>
-        <div><b>100%</b><span>Obrador propio</span></div>
+        <div><b data-count="4.7" data-dec="1">4,7</b><span>Valoración en Google</span></div>
+        <div><b data-count="2">2</b><span>Tiendas en Terrassa</span></div>
+        <div><b data-count="100" data-suffix="%">100%</b><span>Obrador propio</span></div>
       </div>
     </div>
   </div>
@@ -82,27 +89,24 @@
       <p class="lede rv" style="--d:.2s">Historias cortas sobre lo que estamos haciendo ahora mismo entre hornos y mostrador.</p>
     </div>
     <div class="posts">
-      <a class="post rv" href="#blog">
+      <article class="post rv">
         <div class="img-mask"><img src="assets/img/merengue.jpg" alt="Merengue relleno de nata montada y espolvoreado con azúcar glas, sobre pizarra" loading="lazy"></div>
         <div class="meta"><span>Clásicos</span><span>3 min</span></div>
         <h3>El merengue que se deshace en la boca</h3>
         <p>Claras, azúcar y horas de horno bajo. Dos discos crujientes y una nata ligera en medio.</p>
-        <span class="more">Leer</span>
-      </a>
-      <a class="post rv" style="--d:.12s" href="#blog">
+      </article>
+      <article class="post rv" style="--d:.12s">
         <div class="img-mask"><img src="assets/img/fresa.jpg" alt="Primer plano de una tartaleta de fresas frescas sobre base de masa sablée" loading="lazy"></div>
         <div class="meta"><span>Temporada</span><span>2 min</span></div>
         <h3>Tartaleta de fresa, a mano</h3>
         <p>Masa sablée, crema suave y fruta fresca cortada a mano, una a una.</p>
-        <span class="more">Leer</span>
-      </a>
-      <a class="post rv" style="--d:.24s" href="#blog">
+      </article>
+      <article class="post rv" style="--d:.24s">
         <div class="img-mask"><img src="assets/img/merengue-chocolate.jpg" alt="Merengue con nata cubierto de chocolate caliente que resbala por los lados" loading="lazy"></div>
         <div class="meta"><span>Golosos</span><span>2 min</span></div>
         <h3>Chocolate sobre merengue</h3>
         <p>Una cobertura de chocolate brillante que cae despacio sobre la nata. Mejor en el momento.</p>
-        <span class="more">Leer</span>
-      </a>
+      </article>
     </div>
   </div>
 </section>
@@ -126,7 +130,6 @@
       <article class="card"><div><span class="stars" aria-label="4 de 5">★★★★☆</span><q>Los postres individuales, muy recomendables.</q></div><footer><span>Carles A.</span><span>Dic 2025</span></footer></article>
     </div>
   </div>
-  <p class="hint">Pasa el ratón para pausar · Haz clic para acelerar</p>
 </section>
 </main>
 

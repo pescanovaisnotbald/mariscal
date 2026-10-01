@@ -17,6 +17,44 @@
   }), { threshold: .15, rootMargin: '0px 0px -6% 0px' });
   document.querySelectorAll('.rv,.img-mask').forEach((el) => io.observe(el));
 
+  /* hero media: Apple-style expand + inner parallax, smoothed with lerp */
+  const media = document.querySelector('.hero-media');
+  const frame = media && media.querySelector('.frame');
+  if (media && !reduce) {
+    let cur = 0, curPy = 0, dirty = true;
+    addEventListener('scroll', () => { dirty = true; }, { passive: true });
+    addEventListener('resize', () => { dirty = true; });
+    const ease = (t) => 1 - Math.pow(1 - t, 3);
+    const tick = () => {
+      if (dirty) {
+        const vh = innerHeight, r = frame.getBoundingClientRect();
+        const target = ease(Math.min(Math.max(1 - (r.top - vh * .06) / (vh * .6), 0), 1));
+        const mid = Math.min(Math.max((r.top + r.height / 2 - vh / 2) / vh, -1), 1);
+        const tPy = -mid * r.height * .1;
+        cur += (target - cur) * .12; curPy += (tPy - curPy) * .12;
+        media.style.setProperty('--p', cur.toFixed(4));
+        media.style.setProperty('--py', curPy.toFixed(2) + 'px');
+        if (Math.abs(target - cur) < .001 && Math.abs(tPy - curPy) < .1) dirty = false;
+      }
+      requestAnimationFrame(tick);
+    };
+    tick();
+  }
+
+  /* count-up for the figures */
+  document.querySelectorAll('[data-count]').forEach((el) => {
+    if (reduce) return;
+    const end = parseFloat(el.dataset.count), dec = +el.dataset.dec || 0, suf = el.dataset.suffix || '';
+    const fmt = (v) => v.toFixed(dec).replace('.', ',') + suf;
+    el.textContent = fmt(0);
+    new IntersectionObserver(([e], o) => {
+      if (!e.isIntersecting) return; o.disconnect();
+      const t0 = performance.now(), D = 1600;
+      const step = (t) => { const k = Math.min((t - t0) / D, 1); el.textContent = fmt(end * (1 - Math.pow(1 - k, 4))); if (k < 1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    }, { threshold: .6 }).observe(el);
+  });
+
   /* subtle hero parallax */
   const wm = document.querySelector('.wordmark');
   if (wm && !reduce) {
@@ -51,6 +89,7 @@
       const dx = e.clientX - drag.x; drag.x = e.clientX; drag.moved += Math.abs(dx);
       if (drag.moved > 6) { x -= dx; rail.style.cursor = 'grabbing'; }
     });
+    addEventListener('pointercancel', () => { drag = null; rail.style.cursor = ''; });
     addEventListener('pointerup', () => {
       if (drag && drag.moved <= 6) boost = Math.min(boost + 520, 1400); // click → faster, then eases back
       drag = null; rail.style.cursor = '';
