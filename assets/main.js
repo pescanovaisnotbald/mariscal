@@ -17,25 +17,14 @@
   }), { threshold: .15, rootMargin: '0px 0px -6% 0px' });
   document.querySelectorAll('.rv,.img-mask').forEach((el) => io.observe(el));
 
-  /* hero media: Apple-style expand + inner parallax, smoothed with lerp */
-  const media = document.querySelector('.hero-media');
-  const frame = media && media.querySelector('.frame');
-  if (media && !reduce) {
-    let cur = 0, curPy = 0, dirty = true;
-    addEventListener('scroll', () => { dirty = true; }, { passive: true });
-    addEventListener('resize', () => { dirty = true; });
-    const ease = (t) => 1 - Math.pow(1 - t, 3);
+  /* hero background: gentle parallax, smoothed */
+  const bg = document.querySelector('.hero-bg');
+  if (bg && !reduce) {
+    let cur = 0, target = 0;
+    addEventListener('scroll', () => { target = Math.min(scrollY, innerHeight) * .22; }, { passive: true });
     const tick = () => {
-      if (dirty) {
-        const vh = innerHeight, r = frame.getBoundingClientRect();
-        const target = ease(Math.min(Math.max(1 - (r.top - vh * .06) / (vh * .6), 0), 1));
-        const mid = Math.min(Math.max((r.top + r.height / 2 - vh / 2) / vh, -1), 1);
-        const tPy = -mid * r.height * .1;
-        cur += (target - cur) * .12; curPy += (tPy - curPy) * .12;
-        media.style.setProperty('--p', cur.toFixed(4));
-        media.style.setProperty('--py', curPy.toFixed(2) + 'px');
-        if (Math.abs(target - cur) < .001 && Math.abs(tPy - curPy) < .1) dirty = false;
-      }
+      cur += (target - cur) * .1;
+      bg.style.setProperty('--hy', cur.toFixed(2) + 'px');
       requestAnimationFrame(tick);
     };
     tick();
