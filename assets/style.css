@@ -155,7 +155,7 @@ footer.site{background:var(--paper);padding:clamp(80px,10vw,140px) var(--gutter)
 .shop button{all:unset;cursor:pointer;display:block;width:100%;padding:26px 0;box-sizing:border-box}
 .shop h3{font-family:var(--serif);font-weight:400;font-size:28px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;transition:transform .6s var(--ease)}
 .shop h3 small{font-family:var(--sans);font-size:12px;letter-spacing:.14em;color:var(--wood-deep)}
-.shop button:hover h3,.shop.on h3{transform:translateX(8px)}
+@media(hover:hover){.shop:not(.on) button:hover h3{transform:translateX(8px)}}
 .shop .more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .7s var(--ease)}
 .shop.on .more{grid-template-rows:1fr}
 .shop .more>div{overflow:hidden}
