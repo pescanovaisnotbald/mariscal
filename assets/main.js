@@ -17,14 +17,15 @@
   }), { threshold: .15, rootMargin: '0px 0px -6% 0px' });
   document.querySelectorAll('.rv,.img-mask').forEach((el) => io.observe(el));
 
-  /* hero background: gentle parallax, smoothed */
-  const bg = document.querySelector('.hero-bg');
-  if (bg && !reduce) {
+  /* hero: scroll-linked zoom / fade, smoothed with lerp */
+  const hero = document.querySelector('.hero');
+  if (hero && !reduce) {
     let cur = 0, target = 0;
-    addEventListener('scroll', () => { target = Math.min(scrollY, innerHeight) * .22; }, { passive: true });
+    const read = () => { target = Math.min(Math.max(scrollY / (hero.offsetHeight * .85), 0), 1); };
+    addEventListener('scroll', read, { passive: true }); read();
     const tick = () => {
       cur += (target - cur) * .1;
-      bg.style.setProperty('--hy', cur.toFixed(2) + 'px');
+      hero.style.setProperty('--p', cur.toFixed(4));
       requestAnimationFrame(tick);
     };
     tick();
@@ -43,16 +44,6 @@
       requestAnimationFrame(step);
     }, { threshold: .6 }).observe(el);
   });
-
-  /* subtle hero parallax */
-  const wm = document.querySelector('.wordmark');
-  if (wm && !reduce) {
-    addEventListener('scroll', () => {
-      const y = Math.min(scrollY, innerHeight);
-      wm.style.transform = `translateY(${y * .18}px)`;
-      wm.style.opacity = 1 - y / (innerHeight * .9);
-    }, { passive: true });
-  }
 
   /* reviews carousel: auto-scroll, pause on hover, click = faster */
   const rail = document.querySelector('.rail');

@@ -17,13 +17,16 @@
 <body>
 
 <header class="nav" id="top">
-  <a class="mark" href="#top" aria-label="Mariscal, inicio">·mariscal·</a>
-  <ul>
-    <li><a href="#conocenos">Conócenos</a></li>
-    <li><a href="#blog">Obrador</a></li>
-    <li><a href="#resenas">Reseñas</a></li>
-    <li><a href="#visitanos">Visítanos</a></li>
-  </ul>
+  <nav class="pill" aria-label="Principal">
+    <a class="mark" href="#top" aria-label="Mariscal, inicio">·mariscal·</a>
+    <ul>
+      <li><a href="#conocenos">Conócenos</a></li>
+      <li><a href="#blog">Obrador</a></li>
+      <li><a href="#resenas">Reseñas</a></li>
+      <li><a href="#visitanos">Visítanos</a></li>
+    </ul>
+    <a class="call" href="tel:+34937895478">Llamar</a>
+  </nav>
 </header>
 
 <main>
@@ -32,15 +35,22 @@
   <div class="hero-bg">
     <img src="assets/img/hero.jpg" width="942" height="1669" alt="Interior de la pastelería Mariscal: mostrador de madera con panes, baguettes y bollería artesana" fetchpriority="high" decoding="async">
   </div>
-  <h1 class="wordmark" aria-label="mariscal">
-    <span class="dot" aria-hidden="true"></span>
-    <span aria-hidden="true" style="display:flex">
-      <span class="l" style="--i:0">m</span><span class="l" style="--i:1">a</span><span class="l" style="--i:2">r</span><span class="l" style="--i:3">i</span><span class="l" style="--i:4">s</span><span class="l" style="--i:5">c</span><span class="l" style="--i:6">a</span><span class="l" style="--i:7">l</span>
-    </span>
-    <span class="dot" aria-hidden="true"></span>
-  </h1>
-  <p class="hero-sub"><i></i><span>Pastisseria artesana · Terrassa</span><i></i></p>
-  <div class="scroll-cue" aria-hidden="true"></div>
+  <div class="hero-shade" aria-hidden="true"></div>
+  <div class="hero-fade" aria-hidden="true"></div>
+  <div class="hero-copy">
+    <span class="pillbadge">Pastisseria artesana · Terrassa</span>
+    <h1 class="wordmark" aria-label="mariscal">
+      <span class="dot" aria-hidden="true"></span>
+      <span aria-hidden="true" style="display:flex"><span class="l" style="--i:0">m</span><span class="l" style="--i:1">a</span><span class="l" style="--i:2">r</span><span class="l" style="--i:3">i</span><span class="l" style="--i:4">s</span><span class="l" style="--i:5">c</span><span class="l" style="--i:6">a</span><span class="l" style="--i:7">l</span></span>
+      <span class="dot" aria-hidden="true"></span>
+    </h1>
+    <p class="hero-p">Pan, bollería y postres hechos despacio, cada mañana.</p>
+    <div class="hero-cta">
+      <a class="btn dark" href="#blog"><span>Ver el obrador</span><i><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></a>
+      <a class="btn ghost" href="#visitanos">Cómo llegar</a>
+    </div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true"><span>Scroll</span><i></i></div>
 </section>
 
 
