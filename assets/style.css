@@ -28,8 +28,9 @@ section{padding:clamp(88px,13vw,180px) var(--gutter)}
 .wrap{max-width:1240px;margin:0 auto}
 
 /* ---------- nav (floating glass pill) ---------- */
-.nav{position:fixed;top:18px;inset-inline:0;z-index:50;display:flex;justify-content:center;padding:0 16px;pointer-events:none;transition:transform .7s var(--ease),opacity .5s var(--ease)}
-.nav.hide{transform:translateY(-140%);opacity:0}
+.nav{position:fixed;top:18px;inset-inline:0;z-index:50;display:flex;justify-content:center;padding:0 16px;pointer-events:none;transition:transform .9s var(--ease),opacity .6s var(--ease),visibility 0s}
+.nav.hide{transform:translateY(-110%) scale(.94);opacity:0;visibility:hidden;transition:transform .6s var(--ease),opacity .4s var(--ease),visibility 0s linear .6s}
+.nav.hide .pill{pointer-events:none}
 .pill{pointer-events:auto;display:flex;align-items:center;gap:30px;padding:13px 28px;border-radius:99px;background:rgba(255,255,255,.55);border:1px solid rgba(17,17,17,.09);-webkit-backdrop-filter:blur(22px) saturate(1.4);backdrop-filter:blur(22px) saturate(1.4);box-shadow:0 8px 32px -14px rgba(60,40,10,.22);transition:background .6s var(--ease),box-shadow .6s var(--ease),padding .6s var(--ease)}
 .nav.scrolled .pill{background:rgba(255,255,255,.82);box-shadow:0 14px 40px -16px rgba(60,40,10,.3)}
 .mark{font-weight:400;letter-spacing:.14em;font-size:18px;white-space:nowrap}
@@ -275,7 +276,7 @@ footer.site{background:var(--paper);padding:clamp(80px,10vw,140px) var(--gutter)
 .menu-foot{margin-top:32px;display:flex;justify-content:space-between;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);opacity:0;transform:translateY(12px);transition:opacity .8s var(--ease) .4s,transform .8s var(--ease) .4s}
 .menu-open .menu-foot{opacity:1;transform:none}
 .menu-open{overflow:hidden}
-.menu-open .nav{transform:none!important;opacity:1!important}
+.menu-open .nav{transform:none!important;opacity:1!important;visibility:visible!important}
 .menu-open .pill{background:rgba(255,255,255,.9)}
 @media(max-width:720px){.burger{display:flex}}
 @media(min-width:721px){.menu{display:none}}

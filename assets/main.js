@@ -3,13 +3,19 @@
 
   /* nav: solid after hero, hide on scroll down */
   const nav = document.querySelector('.nav');
-  let lastY = 0;
-  addEventListener('scroll', () => {
-    const y = scrollY;
-    nav.classList.toggle('scrolled', y > 80);
-    nav.classList.toggle('hide', y > lastY && y > 400);
-    lastY = y;
-  }, { passive: true });
+  const heroEl = document.querySelector('.hero');
+  let lastY = scrollY;
+  const navUpdate = () => {
+    const y = scrollY, dy = y - lastY;
+    const pastHero = y > (heroEl ? heroEl.offsetHeight : 400) - 90;
+    if (document.documentElement.classList.contains('menu-open')) { lastY = y; return; }
+    if (!pastHero) nav.classList.add('hide');
+    else if (dy < -6) nav.classList.remove('hide');        // scrolling up → show
+    else if (dy > 6) nav.classList.add('hide');            // scrolling down → hide
+    if (Math.abs(dy) > 6 || !pastHero) lastY = y;
+  };
+  addEventListener('scroll', navUpdate, { passive: true });
+  navUpdate();
 
   /* mobile menu */
   const burger = document.querySelector('.burger'), menu = document.getElementById('menu');
